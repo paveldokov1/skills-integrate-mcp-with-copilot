@@ -12,7 +12,7 @@ A super simple FastAPI application that allows students to view and sign up for 
 1. Install the dependencies:
 
    ```
-   pip install fastapi uvicorn
+   pip install -r ../requirements.txt
    ```
 
 2. Run the application:
@@ -47,4 +47,10 @@ The application uses a simple data model with meaningful identifiers:
    - Name
    - Grade level
 
-All data is stored in memory, which means data will be reset when the server restarts.
+Data is stored in a SQLite database at `src/activities.db`, which is created and
+seeded automatically on first start. Set `ACTIVITIES_DB_PATH` to use a different
+database location, for example when running tests or a separate environment.
+
+The database contains stable identifiers for activities, students, and
+enrollments. Existing activities and participant emails are inserted only when
+missing, so restarting the server preserves new registrations.
